@@ -1,15 +1,10 @@
-const Client = require('../models/Client')
+const Favorito = require('../models/Favorito')
 
 module.exports = {
   async create (req, res) {
     try {
-      const client = new Client(req.body)
-
-      if(!client.name) throw new Error('Nome não informado')
-      if(!client.fantasy) throw new Error('Nome Fantasia não informado')
-      if(!client.cnpj) throw new Error('CNPJ não informado')
-      
-      await Client.create(client)
+      const favorito = new Favorito(req.body)
+      await Favorito.create(favorito)
       
       return res.status(200).send()
     } catch (error) {
@@ -18,6 +13,15 @@ module.exports = {
   },
 
   async getAll (req, res) {
-    res.status(200).json(await Client.find({}))
+    res.status(200).json(await Favorito.find({}))
   },
+
+  async delete (req, res) {
+    try {
+      await Favorito.deleteOne({ _id: req.params.id })
+      res.status(200).send() 
+    } catch (error) {
+      res.status(400).json({ message: `Erro ao deletar favorito: ${error.message}` })
+    }
+  }
 }

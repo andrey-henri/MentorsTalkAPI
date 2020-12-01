@@ -1,33 +1,21 @@
 const mongoose = require('mongoose')
 
 const FavoritoSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true
-  },
-  fantasy: {
-    type: String,
-    required: true
-  },
-  cnpj: {
-    type: String,
-    required: true
-  },
-  active: {
-    type: Boolean,
-    required: true
-  },
-  birdLicenses: [
-    { 
-      key: 
-        { 
-          type: String, 
-          unique: true,
-          required: true
-        }, 
-      expiration: Date 
-    }
-  ]
+  id: Number,
+  nome: String,
+  IdadeUf: String,
+  Imagem: String,
+  Desc: String,
+  Linguagem: String,
+  liked: Boolean,
+  sobre: String,
+  imgsobre: String,
+  UltimaExp: String,
+  Cargo: String,
+  Empresa: String,
+  novo: Boolean,
+  Likes: Number,
+  Likado: Boolean
 })
 
-module.exports = mongoose.model('Favorito', FavoritoSchema)
+module.exports = mongoose.model('Favorito', FavoritoSchema, 'favorito')
